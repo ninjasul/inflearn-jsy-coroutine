@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     // 코루틴 라이브러리
-    implementation("org.jetbrains.kotlin:kotlinx-coroutines-core:1.8.1")
+    runtimeOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
 }
 
 tasks.test {
