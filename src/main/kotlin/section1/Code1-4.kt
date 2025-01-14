@@ -1,4 +1,4 @@
-package section1.code2
+package section1
 
 import java.util.concurrent.Executors
 import java.util.concurrent.Future

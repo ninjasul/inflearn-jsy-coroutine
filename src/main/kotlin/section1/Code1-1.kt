@@ -1,4 +1,4 @@
-package section1.code1
+package section1
 
 fun main() {
     println("[${Thread.currentThread().name}] 시작")
