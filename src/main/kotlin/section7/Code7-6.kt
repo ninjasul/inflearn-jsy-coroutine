@@ -9,6 +9,7 @@ fun main() = runBlocking<Unit> {
         launch(CoroutineName("Coroutine1")) {
             launch(CoroutineName("Coroutine3")) {
                 throw Exception("예외 발생")
+                println("[${Thread.currentThread().name}] 코루틴 실행")
             }
 
             delay(100L)

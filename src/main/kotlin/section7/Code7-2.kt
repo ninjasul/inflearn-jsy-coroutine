@@ -1,10 +1,6 @@
 package section7
 
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 
 fun main() = runBlocking<Unit> {
     launch(CoroutineName("Parent Coroutine")) {
@@ -13,15 +9,16 @@ fun main() = runBlocking<Unit> {
         launch(CoroutineName("Coroutine1") + Job()) {
             launch(CoroutineName("Coroutine3")) {
                 throw Exception("예외 발생")
+                println("[${Thread.currentThread().name}] 코루틴 실행")
             }
 
             delay(100L)
-            println("[${Thread.currentThread().name}] Coroutine1 실행함")
+            println("[${Thread.currentThread().name}] 코루틴 실행")
         }
 
         launch(CoroutineName("Coroutine2")) {
             delay(100L)
-            println("[${Thread.currentThread().name}] Coroutine2 실행함")
+            println("[${Thread.currentThread().name}] 코루틴 실행")
         }
     }
 
