@@ -10,17 +10,18 @@ fun main() = runBlocking<Unit> {
     result.forEach { println("[${getElapsedTime(startTime)}][${Thread.currentThread().name}] $it") }
 }
 
-private suspend fun searchByKeyword(keyword: String): Array<String> = coroutineScope {
-    val dbResultsDeferred = async {
-        searchFromDB(keyword)
-    }
+private suspend fun searchByKeyword(keyword: String): Array<String> =
+    coroutineScope {
+        val dbResultsDeferred = async {
+            searchFromDB(keyword)
+        }
 
-    val serverResultsDeferred = async {
-        searchFromServer(keyword)
-    }
+        val serverResultsDeferred = async {
+            searchFromServer(keyword)
+        }
 
-    return@coroutineScope arrayOf(*dbResultsDeferred.await(), *serverResultsDeferred.await())
-}
+        return@coroutineScope arrayOf(*dbResultsDeferred.await(), *serverResultsDeferred.await())
+    }
 
 private suspend fun searchFromDB(keyword: String): Array<String> {
     delay(1000L)
